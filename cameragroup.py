@@ -11,8 +11,8 @@ class CameraGroup(pygame.sprite.Group):
 
         # Camera offset
         self.offset = pygame.math.Vector2()
-        self.half_w = self.display_surface.get_size()[0] // 2
-        self.half_h = self.display_surface.get_size()[1] // 2
+        # self.half_w = self.display_surface.get_size()[0] // 2
+        # self.half_h = self.display_surface.get_size()[1] // 2
 
         # Box setup
         self.camera_borders = {'left': 200, 'right': 200, 'top': 100, 'bottom': 100}
@@ -26,10 +26,10 @@ class CameraGroup(pygame.sprite.Group):
         self.ground_surface = COVER_SPRITE
         self.ground_rect = self.ground_surface.get_rect(topleft=(0, 0))
 
-    def center_target_camera(self, target):
-        # Problems with view of rotation player here
-        self.offset.x = target.rect.centerx - self.half_w
-        self.offset.y = target.rect.centery - self.half_h
+    # def center_target_camera(self, target):
+    #     # Problems with view of rotation player here (?)
+    #     self.offset.x = target.rect.centerx - self.half_w
+    #     self.offset.y = target.rect.centery - self.half_h
 
     def box_target_camera(self, target):
 
@@ -46,7 +46,6 @@ class CameraGroup(pygame.sprite.Group):
         self.offset.y = self.camera_rect.top - self.camera_borders['top']
 
     def custom_draw(self, player):
-
         # self.center_target_camera(player)
         self.box_target_camera(player)
 

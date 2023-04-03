@@ -1,5 +1,6 @@
 import pygame
-from groups import all_sprites_group
+from screen_setting import screen
+from groups import all_sprites_group, camera_group
 from player import Player, PLAYER_1_SPRITE
 from bullet import BULLET_1_SPRITE
 from cameragroup import CameraGroup, COVER_SPRITE
@@ -16,7 +17,8 @@ pause = False
 clock = pygame.time.Clock()
 
 # Set screen
-screen = pygame.display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
+# imported from screen_setting
+# screen = pygame.display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
 
 # Set name of window
 pygame.display.set_caption('Game HM')
@@ -29,7 +31,7 @@ bg_img = pygame.image.load('assets/images/backgrounds/bg_1.png').convert()
 pause_text = (pygame.font.SysFont('Consolas', 72).render('Pause', True, pygame.color.Color('White')))
 
 # Camera group
-camera_group = CameraGroup()
+
 
 # Create object player
 PLAYER_1_SPRITE.convert_alpha()
@@ -65,10 +67,11 @@ while run:
         screen.blit(bg_img, (0, 0))
         # screen.blit(player.image, player.rect)
         # player.update()
-        all_sprites_group.update()
         camera_group.update()
+        # all_sprites_group.update()
+
         camera_group.custom_draw(player)
-        all_sprites_group.draw(screen)
+        # all_sprites_group.draw(screen)
     elif pause:
         screen.fill((0, 0, 0))
         screen.blit(pause_text, (300, 300))

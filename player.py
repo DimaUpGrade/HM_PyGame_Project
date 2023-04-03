@@ -66,7 +66,8 @@ class Player(pygame.sprite.Sprite):
             spawn_bullet_pos = self.pos + self.gun_barrel_offset.rotate(self.angle)
             self.bullet = Bullet(spawn_bullet_pos[0], spawn_bullet_pos[1], self.angle)
             bullet_group.add(self.bullet)
-            all_sprites_group.add(self.bullet)
+            # all_sprites_group.add(self.bullet)
+            camera_group.add(self.bullet)
 
     def move(self):
         self.pos += pygame.math.Vector2(self.velocity_x, self.velocity_y)
